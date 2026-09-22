@@ -1,4 +1,4 @@
-# IT-Kamianets 3D Engine — Unity Scene
+# IT-Kamianets 3D Engine: Unity Scene
 
 `3d-unity-scene` is the scene runtime package of the **IT-Kamianets 3D Engine**.
 
