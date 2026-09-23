@@ -1,0 +1,19 @@
+{
+  "name": "com.itkamianets.3d-unity-scene",
+  "version": "0.1.0",
+  "displayName": "IT-Kamianets 3D Engine: Unity Scene",
+  "description": "Unity-side C# data model of 3d-scene-schema (v1), and JSON conversion for it. Engine-only: no product/business concepts, no Unity scene-instantiation yet.",
+  "unity": "6000.6",
+  "license": "MIT",
+  "author": {
+    "name": "IT Kamianets"
+  },
+  "keywords": [
+    "3d-engine",
+    "it-kamianets"
+  ],
+  "dependencies": {
+    "com.itkamianets.3d-unity-core": "0.1.0",
+    "com.unity.nuget.newtonsoft-json": "3.2.1"
+  }
+}

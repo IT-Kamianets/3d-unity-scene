@@ -1,0 +1,23 @@
+{
+    "name": "ITKamianets.Engine.Scene",
+    "rootNamespace": "ITKamianets.Engine.Scene",
+    "references": [
+        "ITKamianets.Engine.Core",
+        "Unity.Newtonsoft.Json"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.unity.nuget.newtonsoft-json",
+            "expression": "",
+            "define": "NEWTONSOFT_JSON_PRESENT"
+        }
+    ],
+    "noEngineReferences": false
+}

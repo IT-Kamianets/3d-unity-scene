@@ -1,0 +1,19 @@
+{
+    "name": "ITKamianets.Engine.Scene.Editor",
+    "rootNamespace": "ITKamianets.Engine.Scene.Editor",
+    "references": [
+        "ITKamianets.Engine.Core",
+        "ITKamianets.Engine.Scene"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
