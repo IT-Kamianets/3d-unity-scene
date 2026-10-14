@@ -6,7 +6,6 @@ namespace ITKamianets.Engine.Scene.Model
     /// Mirrors transform.schema.json#/$defs/Transform. "scale" is omitted (schema-optional)
     /// unless explicitly set.
     /// </summary>
-    [System.Serializable]
     public class TransformData
     {
         [JsonProperty("position")] public Vector3Data Position;

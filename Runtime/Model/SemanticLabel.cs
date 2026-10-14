@@ -25,6 +25,17 @@ namespace ITKamianets.Engine.Scene.Model
         LAMP,
         PLANT,
         WALL_ART,
-        OTHER
+        OTHER,
+
+        // Since schema 1.1.0: authored level elements.
+
+        /// <summary>A container with no content of its own.</summary>
+        GROUP,
+
+        /// <summary>A point whose meaning is in metadata tags, e.g. a spawn point.</summary>
+        MARKER,
+
+        /// <summary>An object shown with its asset.</summary>
+        PROP
     }
 }

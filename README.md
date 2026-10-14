@@ -14,11 +14,30 @@ Its main responsibility is:
 
 Unity should not be the permanent source of truth. The shared scene definition should be able to later work with Unity, Unreal Engine, web viewers, AI tools, and external services.
 
-### Status (version A)
+### Status
 
-Scoped to exactly what `vroom-scanner`'s first scan-and-upload loop needs: a C# data model of `3d-scene-schema` (v1), under `Runtime/Model/`, and `SceneJson` for converting it to/from the schema's JSON shape (via Newtonsoft.Json, since `JsonUtility` can't serialize the `Dictionary<string, object>` metadata bag or nullable structs the schema needs). Field names are mapped with `[JsonProperty]` to match the schema exactly (camelCase, e.g. `sceneId`, `parentId`).
+Version 0.1, for `3d-scene-schema` 1.1.0 (reads 1.0.0 documents too).
 
-Deliberately not built yet: instantiating a live Unity scene from `SceneData` (the "Scene Schema → Unity Scene" loader direction) and syncing edits back out. `vroom-scanner`'s version A only needs the saver direction (MRUK scan → `SceneData` → JSON → Firestore); the loader is Phase 2+ once rescanning/comparison is needed.
+* **Model and JSON:** C# mirror of the schema under `Runtime/Model/`, `SceneJson` for reading and writing (Newtonsoft.Json, exact schema field names). `CoordinateConversion` between the schema's right-handed space and Unity's.
+* **Loading** (`SceneLoader.Load(json or SceneData, parent, options)` → `LoadedScene`):
+  * one GameObject per scene object, in the document's hierarchy, with the scene's `origin` on the root;
+  * a `SceneObject` component on each: id, type, asset, tags (`HasTag("spawn")`, `TryGetTag("team", out var team)` for `team:a`);
+  * surfaces from boundaries (double-sided mesh, concave outlines triangulated) with a renderer when a material is given, and a collider; invisible walls get the collider only;
+  * box colliders from volumes, triggers for markers (objective zones);
+  * asset ids handed to an `ISceneAssetResolver` (implemented by `3d-unity-assets`), so this package does not know how assets are stored.
+* **Finding:** `LoadedScene.FindById`, `FindByTag`, `FindByType`.
+* **Saving** (`SceneSaver.Capture` / `CaptureJson`): the objects as they are now. Moved objects get their new transforms, removed ones are left out, objects added at runtime with a `SceneObject` are included.
+
+Checked in Play mode with `3d-scene-schema/examples`: the arena level (spawns with team tags facing the centre, a 4×2×4 m objective trigger, a floor facing up with a collider) and both room scans load; saving after moving one crate, deleting another and adding a marker gives JSON that validates against the schema, with zero position error on unchanged objects.
+
+```csharp
+var level = SceneLoader.Load(json, null, new SceneLoadOptions { SurfaceMaterial = floorMaterial, AssetResolver = assets });
+foreach (var spawn in level.FindByTag("spawn"))
+{
+    spawn.TryGetTag("team", out var team);   // "a" or "b"
+}
+string saved = SceneSaver.CaptureJson(level);
+```
 
 ### Roadmap
 

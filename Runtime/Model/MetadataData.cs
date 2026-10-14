@@ -4,7 +4,6 @@ using Newtonsoft.Json;
 namespace ITKamianets.Engine.Scene.Model
 {
     /// <summary>Mirrors common.schema.json#/$defs/Metadata.</summary>
-    [System.Serializable]
     public class MetadataData
     {
         [JsonProperty("tags", NullValueHandling = NullValueHandling.Ignore)]

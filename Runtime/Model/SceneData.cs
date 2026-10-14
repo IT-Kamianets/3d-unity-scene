@@ -5,14 +5,13 @@ using Newtonsoft.Json;
 namespace ITKamianets.Engine.Scene.Model
 {
     /// <summary>
-    /// Mirrors scene.schema.json (v1) exactly. This is the engine-only data model --
+    /// Mirrors scene.schema.json (v1, 1.1.0) exactly; reads 1.0.0 documents too. This is the engine-only data model --
     /// it has no concept of interiors, floors, or spaces; the application storing scenes
     /// (e.g. vroom-sync) owns that identity, not this type.
     /// </summary>
-    [System.Serializable]
     public class SceneData
     {
-        public const string CurrentSchemaVersion = "1.0.0";
+        public const string CurrentSchemaVersion = "1.1.0";
         public const string Meters = "meters";
         public const string RightHandedYUp = "right-handed-y-up";
 
