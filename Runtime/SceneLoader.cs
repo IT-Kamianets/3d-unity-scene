@@ -122,10 +122,11 @@ namespace ITKamianets.Engine.Scene
             if (options.BuildSurfaces && data.Boundary != null && data.Boundary.Count >= 3)
             {
                 var mesh = BuildSurfaceMesh(data.Boundary, data.Id);
-                if (options.SurfaceMaterial != null && data.Type != SemanticLabel.INVISIBLE_WALL_FACE)
+                var material = options.SurfaceMaterialFor?.Invoke(sceneObject) ?? options.SurfaceMaterial;
+                if (material != null && data.Type != SemanticLabel.INVISIBLE_WALL_FACE)
                 {
                     go.AddComponent<MeshFilter>().sharedMesh = mesh;
-                    go.AddComponent<MeshRenderer>().sharedMaterial = options.SurfaceMaterial;
+                    go.AddComponent<MeshRenderer>().sharedMaterial = material;
                 }
 
                 if (options.BuildColliders)

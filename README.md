@@ -22,7 +22,7 @@ Version 0.1, for `3d-scene-schema` 1.1.0 (reads 1.0.0 documents too).
 * **Loading** (`SceneLoader.Load(json or SceneData, parent, options)` → `LoadedScene`):
   * one GameObject per scene object, in the document's hierarchy, with the scene's `origin` on the root;
   * a `SceneObject` component on each: id, type, asset, tags (`HasTag("spawn")`, `TryGetTag("team", out var team)` for `team:a`);
-  * surfaces from boundaries (double-sided mesh, concave outlines triangulated) with a renderer when a material is given, and a collider; invisible walls get the collider only;
+  * surfaces from boundaries (double-sided mesh, concave outlines triangulated, UVs in meters) with a renderer when a material is given (one for all, or per surface with `SurfaceMaterialFor`, e.g. stone floors and plaster walls), and a collider; invisible walls get the collider only;
   * box colliders from volumes, triggers for markers (objective zones);
   * asset ids handed to an `ISceneAssetResolver` (implemented by `3d-unity-assets`), so this package does not know how assets are stored.
 * **Finding:** `LoadedScene.FindById`, `FindByTag`, `FindByType`.

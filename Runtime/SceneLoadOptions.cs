@@ -21,6 +21,13 @@ namespace ITKamianets.Engine.Scene
         /// <summary>Material for surface meshes. Null builds them without a renderer: colliders only.</summary>
         public Material SurfaceMaterial;
 
+        /// <summary>
+        /// Picks a material per surface (e.g. stone for floors, plaster for walls); null falls back
+        /// to <see cref="SurfaceMaterial"/>. UVs are in meters, so set the material's tiling to one
+        /// over the texture's size in meters (a 2 m tile: 0.5).
+        /// </summary>
+        public System.Func<SceneObject, Material> SurfaceMaterialFor;
+
         /// <summary>Colliders for surfaces and volumes. Invisible walls get colliders without renderers.</summary>
         public bool BuildColliders = true;
 
